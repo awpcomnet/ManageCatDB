@@ -1,0 +1,4 @@
+##创建数据库 catdb ,默认字符集 UTF-8
+drop  database if exists catdb;
+create database catdb default character set utf8;
+use catdb;

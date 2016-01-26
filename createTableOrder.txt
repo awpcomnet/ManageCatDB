@@ -1,0 +1,53 @@
+##创建订单信息表
+##创建主订单表
+create table t_order (
+	order_id int auto_increment primary key,  ##主订单ID
+	foreign_state varchar(1) not null, ##国外下单状态
+	transfer varchar(1) not null, ##转运状态
+	affirm_state varchar(1) not null, ##确认收货状态
+	
+	
+	create_date datetime not null, ##创建时间
+	update_date datetime not null ##更新时间
+);
+
+
+##创建子订单表
+create table t_subOrder(
+	suborder_id int auto_increment primary key, ##子订单ID
+	super_order_id varchar(12) not null, ##主订单ID
+	brand_id int not null, ##品牌编号
+	series_id int not null, ##系列编号
+	single_id int not null, ##单品编号
+	
+	num int not null default 1, ##数量
+	
+	order_price int not null default 0, ##下单单价(单个)
+	transfer_price int not null default 0, ##运费(单个)
+	cost_price int not null default 0, ##成本价(单个)
+	selling_price int not null default 0, ##售价(单个)
+	
+	curstate varchar(2) not null, ##当前状态(0:国外下单成功 1:国外已砍单 2:已到转运公司 3:转运中 4:已到海关 5:已入库 6:售出 99:损坏)
+	
+	create_date datetime not null, ##创建时间
+	update_date datetime not null ##更新时间
+);
+
+
+##创建仓库表(用于月末统计)
+create table t_store(
+	store_id int auto_increment primary key, ##仓库存货编号
+	super_order_id int not null, ##主订单ID
+	single_id int not null, ##单品编号
+	num int default 0, ##数量
+	
+	order_price int not null, ##下单单价(单个)
+	transfer_price int default 0, ##运费(单个)
+	cost_price int default 0, ##成本价(单个)
+	
+	curstate varchar(1) not null, ##当前状态(0已入库 1:售出 9:损坏)
+	create_date datetime not null, ##创建时间
+	create_by varchar(30) not null, ##创建人
+	update_date datetime not null, ##更新时间
+	update_by varchar(30) not null ##更新人
+);

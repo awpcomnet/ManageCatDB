@@ -1,0 +1,92 @@
+##创建基础信息表
+##创建国家列表
+create table t_country (
+	country_id int auto_increment primary key,  ##国家ID
+	country_name VARCHAR(30),  ##国家名称
+	country_ename VARCHAR(100),  ##国家英文名称
+	
+	create_date datetime not null, ##创建时间
+	create_by varchar(30) not null, ##创建人
+	update_date datetime not null, ##更新时间
+	update_by varchar(30) not null ##更新人
+);
+
+##创建品牌列表
+create table t_brand (
+	brand_id int auto_increment primary key,  ##品牌ID
+	brand_name VARCHAR(30),  ##品牌名称
+	brand_ename VARCHAR(100),  ##品牌英文名称
+	of_origin varchar(5), ##所属国家
+	
+	is_use varchar(1), ##是否使用  0-否 1-是
+	create_date datetime not null, ##创建时间
+	create_by varchar(30) not null, ##创建人
+	update_date datetime not null, ##更新时间
+	update_by varchar(30) not null ##更新人
+);
+
+##创建系列列表
+create table t_series (
+	series_id int auto_increment primary key,  ##系列ID
+	series_name VARCHAR(30),  ##系列名称
+	series_ename VARCHAR(100),  ##系列英文名称
+	of_origin varchar(5), ##所属品牌
+	
+	is_use varchar(1), ##是否使用  0-否 1-是
+	create_date datetime not null, ##创建时间
+	create_by varchar(30) not null, ##创建人
+	update_date datetime not null, ##更新时间
+	update_by varchar(30) not null ##更新人
+);
+
+##创建单品列表
+create table t_singleproduct (
+	single_id int auto_increment primary key,  ##单品ID
+	single_name VARCHAR(30),  ##单品名称
+	single_ename VARCHAR(100),  ##单品英文名称
+	of_origin varchar(5), ##所属系列
+	capacity varchar(5), ##规格容量
+	unit varchar(5), ##单位
+	
+	is_use varchar(1), ##是否使用  0-否 1-是
+	create_date datetime not null, ##创建时间
+	create_by varchar(30) not null, ##创建人
+	update_date datetime not null, ##更新时间
+	update_by varchar(30) not null ##更新人
+);
+
+##栏目管理
+create table t_work_catalog  (
+   id int auto_increment primary key, ##编号
+   parent_id          int,##父栏目编号
+   name               VARCHAR(255),##栏目名称
+   abbr               VARCHAR(255),##英文标识
+   url                VARCHAR(255),##URL地址
+   url_type			  VARCHAR(255),##URL类型
+   description        VARCHAR(500),##描述
+   order_num          int,##排序值
+   state              int,##启用状态 1启用 0关闭
+   icon               VARCHAR(255)##图标样式
+);
+
+##字典项
+create table t_dict_type  (
+   id int auto_increment primary key, ##编号
+   name               VARCHAR(255),##栏目名称
+   code               VARCHAR(255),##代码
+   type                VARCHAR(255),##字典类型
+   description        VARCHAR(500) ##描述
+);
+
+##字典子项
+create table t_dict_item  (
+   id int auto_increment primary key, ##编号
+   name               VARCHAR(255),##字典子项名称
+   value              VARCHAR(255),##字典子项值
+   code               VARCHAR(255),##字典子项代码
+   description        VARCHAR(500),##描述
+   typeId             VARCHAR(255) ##类型ID
+);
+
+
+

@@ -1,0 +1,32 @@
+##初始化基础数据
+##初始化国家
+insert into t_country(country_name, country_ename, create_date, create_by, update_date, update_by) 
+values("中国", "China", now(), "system", now(), "system");
+insert into t_country(country_name, country_ename, create_date, create_by, update_date, update_by) 
+values("美国", "America", now(), "system", now(), "system");
+insert into t_country(country_name, country_ename, create_date, create_by, update_date, update_by) 
+values("日本", "Japan", now(), "system", now(), "system");
+
+##初始化品牌
+insert into t_brand ( brand_name, brand_ename, of_origin, is_use, create_date, create_by, update_date, update_by)
+ values('雅诗兰黛', 'Estee Lauder', '2', '1', now(), 'system', now(), 'system');
+ 
+##初始化系列
+insert into t_series(series_name, series_ename, of_origin, is_use, create_date, create_by, update_date, update_by)
+values('红石榴系列', 'Pomegranate', '1', '1', now(), 'system', now(), 'system');
+insert into t_series(series_name, series_ename, of_origin, is_use, create_date, create_by, update_date, update_by)
+values('多效智妍系列', 'Multiple effect ara series', '1', '1', now(), 'system', now(), 'system');
+
+##初始化单品
+insert into t_singleproduct( single_name, single_ename, of_origin, capacity, unit, is_use, create_date, create_by , update_date, update_by)
+values('鲜亮焕采泡沫洁面乳', 'Nutritious', '1', '125', 'ml', '1', now(), 'system', now(), 'system');
+insert into t_singleproduct( single_name, single_ename, of_origin, capacity, unit, is_use, create_date, create_by , update_date, update_by)
+values('蕴养眼霜', 'Supreme', '2', '15', 'ml', '1', now(), 'system', now(), 'system');
+
+##初始化栏目
+insert into t_work_catalog( name, abbr, url, url_type, description, order_num, state, icon)
+values( '根目录', 'root', '', '', '根目录', 0, 1, '');
+insert into t_work_catalog( parent_id ,name, abbr, url, url_type, description, order_num, state, icon)
+values( 0,'系统管理', 'sys', '', '', '系统管理', 2, 1, '');
+insert into t_work_catalog( parent_id ,name, abbr, url, url_type, description, order_num, state, icon)
+values( 2,'栏目管理', 'catalog', 'catalogview', '1', '栏目管理', 3, 1, '');
