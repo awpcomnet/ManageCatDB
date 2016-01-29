@@ -21,6 +21,7 @@ create table t_subOrder(
 	single_id int not null, ##单品编号
 	
 	num int not null default 1, ##数量
+	sell_num int not null default 0, ##销售数量
 	
 	order_price int not null default 0, ##下单单价(单个)
 	transfer_price int not null default 0, ##运费(单个)
