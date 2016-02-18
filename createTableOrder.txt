@@ -5,7 +5,8 @@ create table t_order (
 	foreign_state varchar(1) not null, ##国外下单状态
 	transfer varchar(1) not null, ##转运状态
 	affirm_state varchar(1) not null, ##确认收货状态
-	
+	remark varchar(4000), ##备注
+	payby varchar(100) not null, ##付款人
 	
 	create_date datetime not null, ##创建时间
 	update_date datetime not null ##更新时间
@@ -23,32 +24,100 @@ create table t_subOrder(
 	num int not null default 1, ##数量
 	sell_num int not null default 0, ##销售数量
 	
-	order_price int not null default 0, ##下单单价(单个)
-	transfer_price int not null default 0, ##运费(单个)
-	cost_price int not null default 0, ##成本价(单个)
-	selling_price int not null default 0, ##售价(单个)
+	order_price double not null default 0, ##下单单价(单个)
+	transfer_price double not null default 0, ##运费(单个)
+	cost_price double not null default 0, ##成本价(单个)
+	selling_price double not null default 0, ##售价(单个)
 	
 	curstate varchar(2) not null, ##当前状态(0:国外下单成功 1:国外已砍单 2:已到转运公司 3:转运中 4:已到海关 5:已入库 6:售出 99:损坏)
+	
+	remark varchar(4000), ##备注
+	payby varchar(100) not null, ##付款人
 	
 	create_date datetime not null, ##创建时间
 	update_date datetime not null ##更新时间
 );
 
 
-##创建仓库表(用于月末统计)
-create table t_store(
+##创建售出仓库表(用于月末统计)
+create table t_selledstore(
 	store_id int auto_increment primary key, ##仓库存货编号
 	super_order_id int not null, ##主订单ID
+	suborder_id int not null, ##子订单编号
+	brand_id int not null, ##品牌编号
+	series_id int not null, ##系列编号
 	single_id int not null, ##单品编号
 	num int default 0, ##数量
 	
 	order_price int not null, ##下单单价(单个)
 	transfer_price int default 0, ##运费(单个)
 	cost_price int default 0, ##成本价(单个)
+	selling_price int not null default 0, ##售价(单个)
 	
-	curstate varchar(1) not null, ##当前状态(0已入库 1:售出 9:损坏)
+	remark varchar(4000), ##备注
+	payby varchar(100) not null, ##付款人
 	create_date datetime not null, ##创建时间
-	create_by varchar(30) not null, ##创建人
-	update_date datetime not null, ##更新时间
-	update_by varchar(30) not null ##更新人
+	update_date datetime not null ##更新时间
+
 );
+
+
+##--------------------------------------------------------------------------------
+##创建下单清单
+create table t_check (
+	id int auto_increment primary key,  ##下单清单唯一编号
+	tracking_number varchar(100), ##国外快递单号
+	order_time varchar(8), ##下单时间yyyyMMdd
+	transfer_company varchar(50), ##转运公司
+	order_addr varchar(100), ##下单网站
+	brand_id int, ##品牌编号
+	series_id int, ##系列编号
+	single_id int, ##单品编号
+	num int default 0, ##数量
+	unit_price double default 0.00, ##下单单价（美元单位）
+	remark varchar(4000), ##备注
+	payby varchar(100) not null, ##付款人
+	order_status varchar(2) not null, ##订单状态
+	create_date datetime not null, ##创建时间
+	update_date datetime not null ##更新时间
+);
+
+##创建邮寄清单(主单)
+create table t_shipped_head (
+	id int auto_increment primary key,  ##邮寄清单主单唯一编号
+	tracking_number varchar(100), ##国外快递单号
+	transfer_company varchar(50), ##转运公司
+	submit_time varchar(8), ##提交邮寄时间
+	
+	postage double default 0.00, ##邮费
+	
+	create_date datetime not null ##创建时间
+);
+
+
+##创建邮寄清单(子单)
+create table t_shipped (
+	id int auto_increment primary key,  ##邮寄清单子单唯一编号
+	head_id int not null, ##邮寄主单唯一编号
+	check_id int not null, ##下单清单唯一编号
+	tracking_number varchar(100), ##国外快递单号
+	transfer_company varchar(50), ##转运公司
+	
+	brand_id int, ##品牌编号
+	series_id int, ##系列编号
+	single_id int, ##单品编号
+	num int default 0, ##数量
+	unit_price double default 0.00, ##下单单价（美元单位）
+	
+	payby varchar(100) not null, ##付款人
+	
+	plan_rmb double, ##预计单价(人民币)
+	plan_postage double, ##预计邮费(人民币)
+	plan_cost double, ##预计成本
+	remark varchar(4000), ##备注
+	
+	shipped_status varchar(2), ##邮寄状态
+	create_date datetime not null, ##创建时间
+	update_date datetime not null ##更新时间
+);
+
