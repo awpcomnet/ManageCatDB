@@ -1,65 +1,4 @@
 ##创建订单信息表
-##创建主订单表
-create table t_order (
-	order_id int auto_increment primary key,  ##主订单ID
-	foreign_state varchar(1) not null, ##国外下单状态
-	transfer varchar(1) not null, ##转运状态
-	affirm_state varchar(1) not null, ##确认收货状态
-	remark varchar(4000), ##备注
-	payby varchar(100) not null, ##付款人
-	
-	create_date datetime not null, ##创建时间
-	update_date datetime not null ##更新时间
-);
-
-
-##创建子订单表
-create table t_subOrder(
-	suborder_id int auto_increment primary key, ##子订单ID
-	super_order_id varchar(12) not null, ##主订单ID
-	brand_id int not null, ##品牌编号
-	series_id int not null, ##系列编号
-	single_id int not null, ##单品编号
-	
-	num int not null default 1, ##数量
-	sell_num int not null default 0, ##销售数量
-	
-	order_price double not null default 0, ##下单单价(单个)
-	transfer_price double not null default 0, ##运费(单个)
-	cost_price double not null default 0, ##成本价(单个)
-	selling_price double not null default 0, ##售价(单个)
-	
-	curstate varchar(2) not null, ##当前状态(0:国外下单成功 1:国外已砍单 2:已到转运公司 3:转运中 4:已到海关 5:已入库 6:售出 99:损坏)
-	
-	remark varchar(4000), ##备注
-	payby varchar(100) not null, ##付款人
-	
-	create_date datetime not null, ##创建时间
-	update_date datetime not null ##更新时间
-);
-
-
-##创建售出仓库表(用于月末统计)
-create table t_selledstore(
-	store_id int auto_increment primary key, ##仓库存货编号
-	super_order_id int not null, ##主订单ID
-	suborder_id int not null, ##子订单编号
-	brand_id int not null, ##品牌编号
-	series_id int not null, ##系列编号
-	single_id int not null, ##单品编号
-	num int default 0, ##数量
-	
-	order_price int not null, ##下单单价(单个)
-	transfer_price int default 0, ##运费(单个)
-	cost_price int default 0, ##成本价(单个)
-	selling_price int not null default 0, ##售价(单个)
-	
-	remark varchar(4000), ##备注
-	payby varchar(100) not null, ##付款人
-	create_date datetime not null, ##创建时间
-	update_date datetime not null ##更新时间
-
-);
 
 
 ##--------------------------------------------------------------------------------
@@ -121,3 +60,58 @@ create table t_shipped (
 	update_date datetime not null ##更新时间
 );
 
+##创建入库清单
+create table t_store (
+	id int auto_increment primary key,  ##入库清单子单唯一编号
+	shipped_id int not null, ##邮寄清单唯一编号
+	check_id int not null, ##下单清单唯一编号
+	
+	tracking_number varchar(100), ##国外快递单号
+	transfer_company varchar(50), ##转运公司
+	brand_id int, ##品牌编号
+	series_id int, ##系列编号
+	single_id int, ##单品编号
+	num int default 0, ##数量
+	unit_price double default 0.00, ##下单单价（美元单位）
+	payby varchar(100) not null, ##付款人
+	
+	unit_rmb double, ##实际单价(人民币)
+	unit_postage double, ##实际单个邮费(人民币)
+	unit_cost double, ##实际成本(人民币)
+	
+	remark varchar(4000), ##备注
+	
+	sell_num int default 0, ##售出数量
+	store_time varchar(8), ##入库时间
+	
+	store_status varchar(2), ##仓库状态
+	create_date datetime not null, ##创建时间
+	update_date datetime not null ##更新时间
+);
+
+##创建售出清单
+create table t_selled (
+	id int auto_increment primary key,  ##售出清单子单唯一编号
+	store_id int not null, ##入库清单唯一编号
+	check_id int not null, ##下单清单唯一编号
+	
+	brand_id int, ##品牌编号
+	series_id int, ##系列编号
+	single_id int, ##单品编号
+	sell_num int not null, ##售出数量
+	
+	unit_price double default 0.00, ##下单单价（美元单位）
+	payby varchar(100) not null, ##付款人(下单清单中的付款人)
+	
+	unit_rmb double, ##实际单价(人民币)
+	unit_postage double, ##实际单个邮费(人民币)
+	unit_cost double, ##实际成本(人民币)
+	selling_price double, ##实际售价(人民币)
+	
+	
+	remark varchar(4000), ##备注
+	sell_time varchar(8), ##售出时间
+	
+	create_date datetime not null, ##创建时间
+	update_date datetime not null ##更新时间
+);
