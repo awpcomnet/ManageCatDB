@@ -54,6 +54,7 @@ create table t_shipped (
 	plan_postage double, ##预计邮费(人民币)
 	plan_cost double, ##预计成本
 	remark varchar(4000), ##备注
+	weight varchar(10), ##单个重量（kg/个）
 	
 	shipped_status varchar(2), ##邮寄状态
 	create_date datetime not null, ##创建时间
