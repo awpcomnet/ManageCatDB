@@ -104,14 +104,16 @@ create table t_selled (
 	unit_price double default 0.00, ##下单单价（美元单位）
 	payby varchar(100) not null, ##付款人(下单清单中的付款人)
 	
-	unit_rmb double, ##实际单价(人民币)
-	unit_postage double, ##实际单个邮费(人民币)
-	unit_cost double, ##实际成本(人民币)
-	selling_price double, ##实际售价(人民币)
+	unit_rmb double default 0.00, ##实际单价(人民币)
+	unit_postage double default 0.00, ##实际单个邮费(人民币)
+	unit_cost double default 0.00, ##实际成本(人民币)
+	selling_price double default 0.00, ##实际售价(人民币)
+	refund double default 0.00, ##补损金额
 	
 	
 	remark varchar(4000), ##备注
 	sell_time varchar(8), ##售出时间
+	selled_status varchar(2), ##售出状态(已售出，已售出（补损），已损坏)
 	
 	create_date datetime not null, ##创建时间
 	update_date datetime not null ##更新时间
