@@ -88,5 +88,16 @@ create table t_dict_item  (
    typeId             VARCHAR(255) ##类型ID
 );
 
-
+##邮件信息配置表
+create table t_mailset (
+	id int auto_increment primary key,  
+	host VARCHAR(30),  ##主机
+	port VARCHAR(10),  ##端口号
+	username varchar(100), ##用户名
+	
+	password varchar(100), ##密码
+	
+	arg0 varchar(100), ##预留字段
+	create_date datetime not null, ##创建时间
+);
 
