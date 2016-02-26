@@ -101,3 +101,12 @@ create table t_mailset (
 	create_date datetime not null ##创建时间
 );
 
+##邮件用户配置表
+create table t_mailuser (
+	id int auto_increment primary key,  
+	username varchar(100), ##用户名
+	
+	arg0 varchar(100), ##预留字段
+	create_date datetime not null ##创建时间
+);
+
