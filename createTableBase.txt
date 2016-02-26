@@ -98,6 +98,6 @@ create table t_mailset (
 	password varchar(100), ##密码
 	
 	arg0 varchar(100), ##预留字段
-	create_date datetime not null, ##创建时间
+	create_date datetime not null ##创建时间
 );
 
