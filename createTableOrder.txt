@@ -46,7 +46,7 @@ create table t_shipped (
 	series_id int, ##系列编号
 	single_id int, ##单品编号
 	num int default 0, ##数量
-	store_num default 0, ##入库数量
+	store_num int default 0, ##入库数量
 	unit_price double default 0.00, ##下单单价（美元单位）
 	
 	payby varchar(100) not null, ##付款人
