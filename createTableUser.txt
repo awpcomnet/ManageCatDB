@@ -1,18 +1,46 @@
-##´´½¨ÓÃ»§±í
+##åˆ›å»ºç”¨æˆ·è¡¨
 create table t_user(
-	user_id int auto_increment primary key, ##±àºÅ
-	user_name varchar(100) not null, ##ÓÃ»§Ãû
-	real_name varchar(100) not null, ##ÕæÊµÓÃ»§Ãû
-	pass_word varchar(100) not null, ##ÃÜÂë
-	salt varchar(100) not null, ##ÑÎ
-	email varchar(100) not null, ##ÓÊÏä
-	state varchar(2) not null, ##ÓÃ»§×´Ì¬
-	login_times int not null default 0, ##µÇÂ¼´ÎÊı
-	last_login_date datetime , ##×îºóµÇÂ¼Ê±¼ä
-	create_date datetime not null, ##´´½¨Ê±¼ä
-	creator varchar(100) not null, ##´´½¨ÈË
-	modify_date datetime not null, ##¸üĞÂÊ±¼ä
-	modifier varchar(100) not null ##ĞŞ¸ÄÈË
+	user_id int auto_increment primary key, ##ç¼–å·
+	user_name varchar(100) not null, ##ç”¨æˆ·å
+	real_name varchar(100) not null, ##çœŸå®ç”¨æˆ·å
+	pass_word varchar(100) not null, ##å¯†ç 
+	salt varchar(100) not null, ##ç›
+	email varchar(100) not null, ##é‚®ç®±
+	state varchar(2) not null, ##ç”¨æˆ·çŠ¶æ€
+	login_times int not null default 0, ##ç™»å½•æ¬¡æ•°
+	last_login_date datetime , ##æœ€åç™»å½•æ—¶é—´
+	create_date datetime not null, ##åˆ›å»ºæ—¶é—´
+	creator varchar(100) not null, ##åˆ›å»ºäºº
+	modify_date datetime not null, ##æ›´æ–°æ—¶é—´
+	modifier varchar(100) not null ##ä¿®æ”¹äºº
 );
 
+##åˆ›å»ºè§’è‰²è¡¨
+create table t_role(
+	id int auto_increment primary key, ##ç¼–å·
+	name varchar(100) not null, ##è§’è‰²åç§°
+	code varchar(100) not null, ##ä»£ç 
+	permission_ids varchar(1000) ##æƒé™ç¼–å·
+);
 
+##åˆ›å»ºæƒé™è¡¨
+create table t_permission(
+	id int auto_increment primary key, ##ç¼–å·
+	name varchar(100) not null, ##æƒé™åç§°
+	code varchar(100) not null, ##ä»£ç 
+	url varchar(1000) not null, ##url
+	catalog_id varchar(10) not null ##æ ç›®ID
+);
+
+##åˆ›å»ºç”¨æˆ·è§’è‰²å…³ç³»è¡¨
+create table t_user_role_relation(
+	user_id int not null, ##ç”¨æˆ·ç¼–å·
+	role_id int not null ##è§’è‰²ç¼–å·
+);
+
+##åˆ›å»ºè§’è‰²æƒé™å…³ç³»è¡¨
+create table t_role_permission_relation(
+	role_id int not null, ##è§’è‰²ç¼–å·
+	permission_id int not null, ##æƒé™ç¼–å·
+	permission_type int not null ##æƒé™ç±»å‹
+);
