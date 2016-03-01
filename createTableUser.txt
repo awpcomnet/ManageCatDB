@@ -5,7 +5,7 @@ create table t_user(
 	real_name varchar(100) not null, ##真实用户名
 	pass_word varchar(100) not null, ##密码
 	salt varchar(100) not null, ##盐
-	email varchar(100) not null, ##邮箱
+	email varchar(100), ##邮箱
 	state varchar(2) not null, ##用户状态
 	login_times int not null default 0, ##登录次数
 	last_login_date datetime , ##最后登录时间
