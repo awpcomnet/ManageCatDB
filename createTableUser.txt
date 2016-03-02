@@ -30,7 +30,7 @@ create table t_permission(
 	code varchar(100) not null, ##代码
 	url varchar(1000) not null, ##url
 	catalog_id varchar(10) not null ##栏目ID
-);
+)auto_increment=10000;
 
 ##创建用户角色关系表
 create table t_user_role_relation(
