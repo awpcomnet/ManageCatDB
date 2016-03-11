@@ -18,7 +18,10 @@ create table t_check (
 	payby varchar(100) not null, ##付款人
 	order_status varchar(2) not null, ##订单状态
 	create_date datetime not null, ##创建时间
-	update_date datetime not null ##更新时间
+	update_date datetime not null, ##更新时间
+	##--------------------新增字段--------
+	batch_no varchar(100) ##批次号
+	
 );
 
 ##创建邮寄清单(主单)
@@ -118,4 +121,12 @@ create table t_selled (
 	
 	create_date datetime not null, ##创建时间
 	update_date datetime not null ##更新时间
+);
+
+##创建批次号管理表
+create table t_batch (
+	id int auto_increment primary key,  ##批次号唯一编号
+	batch_no varchar(10) not null, ##入库清单唯一编号
+	
+	create_date datetime not null ##创建时间
 );
