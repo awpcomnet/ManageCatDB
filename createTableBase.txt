@@ -45,8 +45,8 @@ create table t_singleproduct (
 	single_name VARCHAR(30),  ##单品名称
 	single_ename VARCHAR(100),  ##单品英文名称
 	of_origin varchar(5), ##所属系列
-	capacity varchar(5), ##规格容量
-	unit varchar(5), ##单位
+	capacity varchar(50), ##规格容量
+	unit varchar(50), ##单位
 	
 	is_use varchar(1), ##是否使用  0-否 1-是
 	create_date datetime not null, ##创建时间
