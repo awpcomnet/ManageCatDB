@@ -1,0 +1,8 @@
+#必须导入的基础数据（不含业务信息）
+t_dict_item
+t_dict_type
+t_permission
+t_work_catalog
+
+
+

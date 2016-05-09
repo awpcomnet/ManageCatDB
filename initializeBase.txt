@@ -1,32 +1,145 @@
 ##初始化基础数据
-##初始化国家
-insert into t_country(country_name, country_ename, create_date, create_by, update_date, update_by) 
-values("中国", "China", now(), "system", now(), "system");
-insert into t_country(country_name, country_ename, create_date, create_by, update_date, update_by) 
-values("美国", "America", now(), "system", now(), "system");
-insert into t_country(country_name, country_ename, create_date, create_by, update_date, update_by) 
-values("日本", "Japan", now(), "system", now(), "system");
+##字典项 t_dict_item
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('ml', 'ml', 'unit-ml', '毫升', '1');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('g', 'g', 'unit-g', '克', '1');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('中国', '1', 'China', '中国', '2');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('美国', '2', 'America', '美国', '2');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('日本', '3', 'Japan', '日本', '2');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('法国', '5', 'France', '法国', '2');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('英国', '6', 'England', '英国', '2');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('已生效', '1', 'on', '生效', '3');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('失效', '0', 'off', '失效', '3');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('售出', '1', 'sell', '售出', '4');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('召回', '-1', 'back', '召回', '4');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('爱飞', '0', 'aifei', '爱飞-转运公司', '5');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('花瓣', '1', 'flowerkd', '花瓣', '5');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('Amazon.com', '0', 'Amazon.com', 'Amazon.com', '6');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('已下单', '0', 'check', '已下单', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('已邮寄', '1', 'shipped', '已邮寄', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('已入库', '2', 'storage', '已入库', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('已售出', '3', 'selled', '已售出', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('销售中', '4', 'selling', '销售中', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('已失效', '99', 'failure', '已失效', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('已售出（补损）', '5', 'selledCompensation', '已售出（补损）', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('已损坏', '98', 'damage', '已损坏', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('已退返', '6', 'salesReturn', '已退返', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('部分入库', '7', 'partStore', '部分入库', '7');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('正常', '0', 'normal', '正常', '8');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('异常', '1', 'error', '异常', '8');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('neimanmarcus', '1', 'neimanmarcus', 'neimanmarcus.com', '6');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('newbalance.com', '2', 'newbalance.com', 'newbalance.com', '6');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('gnc.com', '3', 'gnc.com', 'gnc.com', '6');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('鞋码', 'shoes size', 'unit-shoessize', '鞋码', '1');
+INSERT INTO `t_dict_item` (`name`, `value`, `code`, `description`, `typeId`) VALUES ('粒', 'sg', 'unit-sg', '粒/颗', '1');
 
-##初始化品牌
-insert into t_brand ( brand_name, brand_ename, of_origin, is_use, create_date, create_by, update_date, update_by)
- values('雅诗兰黛', 'Estee Lauder', '2', '1', now(), 'system', now(), 'system');
+
+##字典类型 t_dict_type
+INSERT INTO `t_dict_type` (`name`, `code`, `type`, `description`) VALUES ('单位', 'unitDict', '1', '单位');
+INSERT INTO `t_dict_type` (`name`, `code`, `type`, `description`) VALUES ('国家', 'country', '0', '国家信息');
+INSERT INTO `t_dict_type` (`name`, `code`, `type`, `description`) VALUES ('开关', 'onOff', '0', '开关');
+INSERT INTO `t_dict_type` (`name`, `code`, `type`, `description`) VALUES ('售出/召回', 'sellandback', '1', '售出/召回');
+INSERT INTO `t_dict_type` (`name`, `code`, `type`, `description`) VALUES ('转运公司', 'transferCompany', '0', '转运公司');
+INSERT INTO `t_dict_type` (`name`, `code`, `type`, `description`) VALUES ('下单网站', 'orderAddr', '0', '下单网站');
+INSERT INTO `t_dict_type` (`name`, `code`, `type`, `description`) VALUES ('订单状态', 'orderStatus', '1', '订单状态，下单清单，邮寄清单的订单状态都包含在内。');
+INSERT INTO `t_dict_type` (`name`, `code`, `type`, `description`) VALUES ('用户状态', 'user.state', '0', '用户状态');
+
  
-##初始化系列
-insert into t_series(series_name, series_ename, of_origin, is_use, create_date, create_by, update_date, update_by)
-values('红石榴系列', 'Pomegranate', '1', '1', now(), 'system', now(), 'system');
-insert into t_series(series_name, series_ename, of_origin, is_use, create_date, create_by, update_date, update_by)
-values('多效智妍系列', 'Multiple effect ara series', '1', '1', now(), 'system', now(), 'system');
+##权限 t_permission
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('清单添加', 'check:add', '/check/add', '10');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('清单修改', 'check:modify', '/check/modify', '10');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('清单删除', 'check:delete', '/check/delete', '10');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('清单查询', 'check:query', '/check/query', '10');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('批次号生成', 'batch:create', '/batch/create', '20');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('批次号查询', 'batch:query', '/batch/query', '20');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('系列添加', 'Series:add', '/Series/add', '8');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('系列修改', 'Series:update', '/Series/update', '8');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('系列删除', 'Series:delete', '/Series/delete', '8');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('系列查询', 'Series:query', '/Series/query', '8');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('用户添加', 'user:add', '/user/add', '17');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('用户查询', 'user:all', '/user/all', '17');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('用户修改', 'user:update', '/user/update', '17');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('用户查询所有', 'user:queryAll', '/user/queryAll', '17');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮寄清单(主)添加', 'shippedHead:add', '/shippedHead/add', '11');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮寄清单(主)修改', 'shippedHead:modify', '/shippedHead/modify', '11');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮寄清单(主)删除', 'shippedHead:delete', '/shippedHead/delete', '11');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮寄清单(主)查询所有', 'shippedHead:queryAll', '/shippedHead/queryAll', '11');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮寄清单(主)查询分页', 'shippedHead:query', '/shippedHead/query', '11');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮寄清单(子)查询', 'shipped:query', '/shipped/query', '11');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮寄清单(子)修改', 'shipped:modify', '/shipped/modify', '11');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮寄清单(子)删除', 'shipped:delete', '/shipped/delete', '11');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮寄清单(子)修改重量', 'shipped:weight', '/shipped/weight', '11');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('仓库查询', 'store:query', '/store/query', '12');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('仓库添加', 'store:add', '/store/add', '12');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('仓库删除', 'store:delete', '/store/delete', '12');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('邮费计算', 'store:calculate', '/store/calculate', '12');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('仓库修改', 'store:modify', '/store/modify', '12');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('仓库汇总查询', 'storedetail:all', '/storedetail/all', '12');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('售出添加', 'selled:add', '/selled/add', '13');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('售出查询', 'selled:query', '/selled/query', '13');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('售出修改', 'selled:modify', '/selled/modify', '13');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('售出删除', 'selled:delete', '/selled/delete', '13');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('金额补损', 'selled:refund', '/selled/refund', '13');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('添加损坏记录', 'selled:destroy', '/selled/destroy', '13');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('收益导出', 'clear:profit', '/clear/profit', '15');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('售出清单导出', 'clear:selled', '/clear/selled', '15');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('仓库记录导出', 'clear:store', '/clear/store', '15');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('下单记录导出', 'clear:check', '/clear/check', '15');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('品牌添加', 'brand:add', '/brand/add', '7');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('品牌修改', 'brand:update', '/brand/update', '7');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('品牌删除', 'brand:delete', '/brand/delete', '7');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('品牌查询', 'brand:query', '/brand/query', '7');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('单品添加', 'singleproduct:add', '/singleproduct/add', '9');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('单品修改', 'singleproduct:update', '/singleproduct/update', '9');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('单品删除', 'singleproduct:delete', '/singleproduct/delete', '9');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('单品查询', 'singleproduct:query', '/singleproduct/query', '9');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('栏目添加', 'catalog:add', '/catalog/add', '3');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('栏目删除', 'catalog:delete', '/catalog/delete', '3');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('栏目删除（多）', 'catalog:deletes', '/catalog/deletes', '3');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('栏目修改', 'catalog:modify', '/catalog/modify', '3');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('栏目查询', 'catalog:queryUserCatalog', '/catalog/queryUserCatalog', '3');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典查询(1)', 'dict:type', '/dict/type', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典添加', 'dict:add', '/dict/add', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典修改', 'dict:modify', '/dict/modify', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典删除', 'dict:delete', '/dict/delete', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典查询(2)', 'dict:info', '/dict/info', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典子项查询(1)', 'dictitem:items', '/dictitem/items', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典子项查询(2)', 'dictitem:find', '/dictitem/find', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典子项添加', 'dictitem:add', '/dictitem/add', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典子项删除', 'dictitem:delete', '/dictitem/delete', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('字典子项修改', 'dictitem:modify', '/dictitem/modify', '5');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('角色查询', 'role:findAll', '/role/findAll', '18');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('角色查询(分页)', 'role:page', '/role/page', '18');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('角色添加', 'role:add', '/role/add', '18');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('角色修改', 'role:update', '/role/update', '18');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('角色删除', 'role:delete', '/role/delete', '18');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('角色权限修改', 'role:updatepermission', '/role/updatepermission', '18');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('权限查询', 'permission:page', '/permission/page', '19');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('权限添加', 'permission:add', '/permission/add', '19');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('权限修改', 'permission:update', '/permission/update', '19');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('权限删除', 'permission:delete', '/permission/delete', '19');
+INSERT INTO `t_permission` (`name`, `code`, `url`, `catalog_id`) VALUES ('权限展示(树)', 'permission:tree', '/permission/tree', '19');
 
-##初始化单品
-insert into t_singleproduct( single_name, single_ename, of_origin, capacity, unit, is_use, create_date, create_by , update_date, update_by)
-values('鲜亮焕采泡沫洁面乳', 'Nutritious', '1', '125', 'ml', '1', now(), 'system', now(), 'system');
-insert into t_singleproduct( single_name, single_ename, of_origin, capacity, unit, is_use, create_date, create_by , update_date, update_by)
-values('蕴养眼霜', 'Supreme', '2', '15', 'ml', '1', now(), 'system', now(), 'system');
 
-##初始化栏目
-insert into t_work_catalog( name, abbr, url, url_type, description, order_num, state, icon)
-values( '根目录', 'root', '', '', '根目录', 0, 1, '');
-insert into t_work_catalog( parent_id ,name, abbr, url, url_type, description, order_num, state, icon)
-values( 0,'系统管理', 'sys', '', '', '系统管理', 2, 1, '');
-insert into t_work_catalog( parent_id ,name, abbr, url, url_type, description, order_num, state, icon)
-values( 2,'栏目管理', 'catalog', 'catalogview', '1', '栏目管理', 3, 1, '');
+##栏目 t_work_catalog  
+##注意！！！！！！需要手动把根目录id修改为0
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (NULL, '根目录', 'root', '', '', '根目录', 0, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (0, '系统管理', 'sys', '', '', '系统管理', 9, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (2, '栏目管理', 'catalog', 'catalogview', '1', '栏目管理', 3, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (0, '订单管理', 'orderManage', '', '1', '订单管理', 1, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (2, '字典管理', 'dictManage', 'dictview', '1', '字典管理', 4, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (0, '基础信息管理', 'baseInfoManage', 'baseview', '1', '基础信息管理', 4, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (6, '品牌管理', 'brandManage', 'brandview', '1', '品牌管理', 1, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (6, '系列管理', 'seriesManage', 'seriesview', '1', '系列管理', 2, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (6, '单品管理', 'singleManage', 'singleview', '1', '单品管理', 3, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (4, '下单清单管理', 'checkManage', 'checkview', '1', '国外下单后的清单，所有清单中的第一步', 3, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (4, '邮寄清单管理', 'shippedManage', 'shippedview', '1', '邮寄清单管理', 4, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (4, '仓库清单管理', 'storageManage', 'storageview', '1', '仓库清单管理', 5, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (4, '售出清单管理', 'selledManage', 'selledview', '1', '售出清单管理', 5, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (0, '导出信息管理', 'outputManage', 'outputview', '1', '导出信息管理', 2, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (14, '收益导出', 'profitManage', 'profitview', '1', '收益导出', 1, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (0, '用户及权限管理', 'userAndPermissionManage', 'userandpermission', '1', '用户及权限管理', 10, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (16, '用户管理', 'userManage', 'userview', '1', '用户管理', 1, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (16, '角色管理', 'roleManage', 'roleview', '1', '角色管理', 2, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (16, '权限管理', 'permissionManage', 'permissionview', '1', '权限管理', 3, 1, '');
+INSERT INTO `t_work_catalog` (`parent_id`, `name`, `abbr`, `url`, `url_type`, `description`, `order_num`, `state`, `icon`) VALUES (4, '批次号管理', 'batchManager', 'batchview', '1', '批次号管理', 11, 1, '');
+
