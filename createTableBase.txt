@@ -39,9 +39,42 @@ create table t_series (
 	update_by varchar(30) not null ##更新人
 );
 
+##创建系列列表历史表
+create table t_series_his (
+	series_his_id int auto_increment primary key,  ##历史表ID
+	series_id int not null,  ##系列ID 
+	series_name VARCHAR(30),  ##系列名称
+	series_ename VARCHAR(100),  ##系列英文名称
+	of_origin varchar(5), ##所属品牌
+	
+	is_use varchar(1), ##是否使用  0-否 1-是
+	create_date datetime not null, ##创建时间
+	create_by varchar(30) not null, ##创建人
+	update_date datetime not null, ##更新时间
+	update_by varchar(30) not null, ##更新人
+	need_synchronization varchar(1) not null ##是否可同步
+);
+
 ##创建单品列表
 create table t_singleproduct (
 	single_id int auto_increment primary key,  ##单品ID
+	single_name VARCHAR(30),  ##单品名称
+	single_ename VARCHAR(100),  ##单品英文名称
+	of_origin varchar(5), ##所属系列
+	capacity varchar(50), ##规格容量
+	unit varchar(50), ##单位
+	
+	is_use varchar(1), ##是否使用  0-否 1-是
+	create_date datetime not null, ##创建时间
+	create_by varchar(30) not null, ##创建人
+	update_date datetime not null, ##更新时间
+	update_by varchar(30) not null ##更新人
+);
+
+##创建单品历史列表
+create table t_singleproduct_his (
+	single_his_id int auto_increment primary key,  ##单品历史表ID
+	single_id int not null,  ##单品ID
 	single_name VARCHAR(30),  ##单品名称
 	single_ename VARCHAR(100),  ##单品英文名称
 	of_origin varchar(5), ##所属系列
