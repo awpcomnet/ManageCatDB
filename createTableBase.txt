@@ -88,6 +88,38 @@ create table t_singleproduct_his (
 	update_by varchar(30) not null ##更新人
 );
 
+##创建单品，系列同步目录表
+create table t_single_series_sync_directory (
+	sync_directory_id int auto_increment primary key,  ##同步表ID
+	sync_flag varchar(15) not null unique, ##目录表标记
+	
+	brand_id int ,  ##品牌ID
+	series_id int ,  ##系列ID 
+	single_id int ,  ##单品ID
+	
+	is_usable varchar(1), ##是否可用  0-否 1-是 (暂时不适用这个字段)
+	create_date datetime not null, ##创建时间
+	create_by varchar(30) not null ##创建人
+
+);
+
+##创建单品，系列同步详细表
+create table t_single_series_sync_detail (
+	sync_id int auto_increment primary key,  ##同步表ID
+	sync_flag varchar(15) not null, ##同步标志，用于记录同步目录表的标记
+	
+	order_type varchar(2) not null, ##订单类别 01-下单清单 02-邮寄清单 03-仓库清单 04-售出清单
+	order_id int not null, ##订单的唯一编号
+	brand_id int ,  ##品牌ID
+	series_id int ,  ##系列ID 
+	single_id int ,  ##单品ID
+	
+	is_usable varchar(1), ##是否可用  0-否 1-是 (暂时不适用这个字段)
+	create_date datetime not null, ##创建时间
+	create_by varchar(30) not null ##创建人
+
+);
+
 ##栏目管理
 create table t_work_catalog  (
    id int auto_increment primary key, ##编号
