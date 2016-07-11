@@ -21,6 +21,8 @@ create table t_check (
 	update_date datetime not null, ##更新时间
 	##--------------------新增字段--------
 	batch_no varchar(100) ##批次号
+	rate double, ##汇率
+	currency int not null  ##币种
 	
 );
 
