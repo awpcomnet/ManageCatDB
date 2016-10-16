@@ -92,6 +92,7 @@ create table t_store (
 	store_time varchar(8), ##入库时间
 	
 	store_status varchar(2), ##仓库状态
+	plan_sell_price double default -1, ##预计售价
 	create_date datetime not null, ##创建时间
 	update_date datetime not null ##更新时间
 );
@@ -120,6 +121,19 @@ create table t_selled (
 	remark varchar(4000), ##备注
 	sell_time varchar(8), ##售出时间
 	selled_status varchar(2), ##售出状态(已售出，已售出（补损），已损坏)
+	
+	create_date datetime not null, ##创建时间
+	update_date datetime not null ##更新时间
+);
+
+##创建设置表,用于记录用户习惯
+create table t_habit (
+	id int auto_increment primary key,  ##习惯记录唯一编号
+	user_id varchar(100) not null, ##使用者唯一编号
+	
+	type varchar(100) not null, ##类型
+	habit_key varchar(100), ##键
+	habit_value varchar(500) , ##值
 	
 	create_date datetime not null, ##创建时间
 	update_date datetime not null ##更新时间

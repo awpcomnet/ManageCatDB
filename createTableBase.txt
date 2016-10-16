@@ -175,3 +175,20 @@ create table t_mailuser (
 	create_date datetime not null ##创建时间
 );
 
+##操作日志表
+create table t_operation_log (
+	id int auto_increment primary key,  
+	user_id varchar(100) not null, ##用户ID
+	user_name varchar(100), ##用户名
+	real_name varchar(100), ##真实用户名
+	business_type varchar(2) not null, ##主业务类型 00-下单清单 01-邮寄清单 等等
+	sub_business_type varchar(2) not null, ##子业务类型 根据配置文件得到
+	operation_type varchar(2) not null, ##操作类型 00-查询 01-添加 02-修改 03-删除 04-登录
+	operation_describe varchar(300), ##操作描述
+	operation_params varchar(300), ##操作参数
+	
+	
+	
+	create_date datetime not null ##创建时间
+);
+

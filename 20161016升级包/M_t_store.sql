@@ -1,0 +1,1 @@
+alter table t_store add plan_sell_price double default -1; 
