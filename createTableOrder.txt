@@ -50,7 +50,7 @@ create table t_shipped (
 	brand_id int, ##品牌编号
 	series_id int, ##系列编号
 	single_id int, ##单品编号
-	num int default 0, ##数量
+	num int default 0, ##数量(等于下单数量)
 	store_num int default 0, ##入库数量
 	unit_price double default 0.00, ##下单单价（美元单位）
 	
@@ -61,6 +61,10 @@ create table t_shipped (
 	plan_cost double, ##预计成本
 	remark varchar(4000), ##备注
 	weight double default 0.00, ##单个重量（kg/个）
+	
+	date_of_manufacture varchar(8), ##生产日期
+	quality_guarantee_period double, ##保质期(单位年)
+	period_of_validity varchar(8), ##到期日期
 	
 	shipped_status varchar(2), ##邮寄状态
 	create_date datetime not null, ##创建时间
@@ -78,7 +82,7 @@ create table t_store (
 	brand_id int, ##品牌编号
 	series_id int, ##系列编号
 	single_id int, ##单品编号
-	num int default 0, ##数量
+	num int default 0, ##数量(仅为入库数量,如果邮寄清单状态为已入库，则该数量也等于下单数量)
 	unit_price double default 0.00, ##下单单价（美元单位）
 	payby varchar(100) not null, ##付款人
 	
@@ -90,6 +94,10 @@ create table t_store (
 	
 	sell_num int default 0, ##售出数量
 	store_time varchar(8), ##入库时间
+	
+	date_of_manufacture varchar(8), ##生产日期
+	quality_guarantee_period double, ##保质期(单位年)
+	period_of_validity varchar(8), ##到期日期
 	
 	store_status varchar(2), ##仓库状态
 	plan_sell_price double default -1, ##预计售价
